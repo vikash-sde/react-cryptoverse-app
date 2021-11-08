@@ -1,8 +1,9 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Layout, Typography, Space } from 'antd';
-import { Navbar, Homepage, Exchanges, Cryptocurrency, CryptoDetails, News } from './components';
+import { Navbar, Homepage, Exchanges, CryptoCurrency, CryptoDetails, News } from './components';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
@@ -13,15 +14,15 @@ function App() {
       <div className="main">
         <Layout>
           <div className="routes">
-            <Routes>
-              <Route exact path="/exchanges">
+            <Switch>
+              <Route exact path="/">
                 <Homepage />
               </Route>
-              <Route exact path="/">
+              <Route exact path="/exchanges">
                 <Exchanges />
               </Route>
               <Route exact path="/cryptocurrency">
-                <Cryptocurrency />
+                <CryptoCurrency />
               </Route>
               <Route exact path="/crypto/:coinid">
                 <CryptoDetails />
@@ -29,11 +30,20 @@ function App() {
               <Route exact path="/news">
                 <News />
               </Route>
-            </Routes>
+            </Switch>
           </div>
         </Layout>
-      </div>
-      <div className="footer">
+        <div className="footer">
+          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2021
+            <Link to="/">Cryptoverse Inc.</Link> <br />
+            All Rights Reserved.
+          </Typography.Title>
+          <Space>
+            <Link to="/">Home</Link>
+            <Link to="/exchanges">Exchanges</Link>
+            <Link to="/news">News</Link>
+          </Space>
+        </div>
       </div>
     </div>
 
